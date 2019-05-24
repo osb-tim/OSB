@@ -1,6 +1,6 @@
 package xyz.xlong99.service;
 
-import xyz.xlong99.domain.User;;
+import xyz.xlong99.domain.User;
 
 /**
  * @author xlong
@@ -17,14 +17,14 @@ public interface UserService {
      * 修改用户信息（包括头像）
      * @param user 修改后的信息
      */
-    void modifyUser(User user);
+    void modifyUser( User user);
 
     /**
      *修改用户头像
      * @param photo 头像名字
      * @param id 用户ID
      */
-    void modifyPhoto(String photo, int id);
+    void modifyPhoto(String photo,int id);
 
     /**
      * 修改用户信息
