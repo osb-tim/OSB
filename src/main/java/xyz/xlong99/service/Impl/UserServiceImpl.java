@@ -7,7 +7,7 @@ import xyz.xlong99.domain.User;
 import xyz.xlong99.service.UserService;
 
 /**
- * @author xlong
+ * @author 胡学良
  * @date 2019-05-24 20:34
  */
 @Service("userService")

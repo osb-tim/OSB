@@ -3,7 +3,7 @@ package xyz.xlong99.service;
 import xyz.xlong99.domain.User;
 
 /**
- * @author xlong
+ * @author 胡学良
  * @date 2019-05-24 20:33
  */
 public interface UserService {
@@ -22,7 +22,7 @@ public interface UserService {
     /**
      *修改用户头像
      * @param photo 头像名字
-     * @param id 用户ID
+     * @param id 用户id
      */
     void modifyPhoto(String photo,int id);
 

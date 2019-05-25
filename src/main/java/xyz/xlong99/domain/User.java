@@ -13,7 +13,7 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    private String username;
+    private String nickName;
     /**
      * 用户性别
      */
@@ -25,7 +25,7 @@ public class User implements Serializable {
     /**
      * 用户所在地址
      */
-    private String location;
+    private String address;
     /**
      * 用户签名
      */
@@ -43,12 +43,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getSex() {
@@ -67,12 +67,12 @@ public class User implements Serializable {
         this.position = position;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getSign() {
@@ -95,10 +95,10 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", nickName='" + nickName + '\'' +
                 ", sex='" + sex + '\'' +
                 ", position='" + position + '\'' +
-                ", location='" + location + '\'' +
+                ", address='" + address + '\'' +
                 ", sign='" + sign + '\'' +
                 ", photo='" + photo + '\'' +
                 '}';
