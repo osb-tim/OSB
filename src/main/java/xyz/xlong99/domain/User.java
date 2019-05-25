@@ -7,9 +7,13 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     /**
-     *用户ID
+     *自动递增
      */
     private int id;
+    /**
+     * 用户id
+     */
+    private int uid;
     /**
      * 用户名
      */
@@ -41,6 +45,14 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public String getNickName() {
@@ -95,6 +107,7 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", uid=" + uid +
                 ", nickName='" + nickName + '\'' +
                 ", sex='" + sex + '\'' +
                 ", position='" + position + '\'' +

@@ -25,22 +25,22 @@ public interface UserDao {
      * @param user 修改值
      * @return User 修改之后的用户信息
      */
-    @Update("update user set nickName = #{nickName},sex = #{sex},position = #{position},address = #{address},sign = #{sign},photo = #{photo} where id = #{id}")
+    @Update("update personaldata set nickName = #{nickName},sex = #{sex},position = #{position},address = #{address},sign = #{sign},photo = #{photo} where uid = #{uid}")
     void modifyUser(User user);
 
     /**
      *修改用户头像
      * @param photo 用户头像
-     * @param id 用户ID
+     * @param uid 用户ID
      */
-    @Update("update user set photo = #{photo} where id = #{id}")
-    void modifyPhoto(@Param("photo") String photo, @Param("id") int id);
+    @Update("update personaldata set photo = #{photo} where uid = #{uid}")
+    void modifyPhoto(@Param("photo") String photo, @Param("id") int uid);
 
     /**
      * 修改用户基本信息
      * @param user 用户信息
      */
-    @Update("update user set nickName = #{username},sex = #{sex},position = #{position},address = #{address},sign = #{sign} where id = #{id}")
+    @Update("update personaldata set nickName = #{nickName},sex = #{sex},position = #{position},address = #{address},sign = #{sign} where uid = #{uid}")
     void modifyMessage(User user);
 
 }

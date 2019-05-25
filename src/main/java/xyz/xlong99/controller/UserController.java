@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,13 +32,13 @@ public class UserController {
 
     /**
      * 通过id查询所有用户信息
-     * @param id 用户ID
+     * @param uid 用户ID
      * @return 用户信息
      */
-    @RequestMapping("/findAll/{id}")
-    public @ResponseBody User findAll(@PathVariable("id") int id){
+    @RequestMapping("/findAll/{uid}")
+    public @ResponseBody User findAll(@PathVariable("uid") int uid){
         System.out.println("=========");
-        User user = userService.findUser(id);
+        User user = userService.findUser(uid);
         return user;
     }
 
@@ -49,7 +50,7 @@ public class UserController {
      * @param upload 获取文件 信息
      * @throws IOException 上传文件时的异常
      */
-    @RequestMapping("/save/{id}")
+    @RequestMapping("/save/{uid}")
     public void modifyUser(User user, HttpServletResponse response, HttpServletRequest request, MultipartFile upload) throws IOException {
 //        跨服务器上传文件
         String path = "http://localhost:9090/fileupload_war/upload/";
@@ -66,21 +67,21 @@ public class UserController {
 
     /**
      * 修改用户头像
-     * @param id 用户ID
+     * @param uid 用户ID
      * @param upload 文件上传
      * @param request request对象
      * @param response response对象
      * @throws IOException 文件上传时的异常
      */
-    @RequestMapping("/modifyPhoto/{id}")
-    public void modifyPhoto(@PathVariable("id") int id,MultipartFile upload,HttpServletRequest request,HttpServletResponse response) throws IOException {
+    @RequestMapping("/modifyPhoto/{uid}")
+    public void modifyPhoto(@PathVariable("uid") int uid,MultipartFile upload,HttpServletRequest request,HttpServletResponse response) throws IOException {
         String path = "D:\\java\\图片";
         String filename = upload.getOriginalFilename();
         String uuid = UUID.randomUUID().toString().replace("-","");
         filename = uuid + "_" +filename;
         upload.transferTo(new File(path,filename));
-        userService.modifyPhoto(filename,id);
-        response.sendRedirect(request.getContextPath()+"/user/findAll/"+id);
+        userService.modifyPhoto(filename,uid);
+        response.sendRedirect(request.getContextPath()+"/user/findAll/"+uid);
     }
 
     /**
@@ -90,9 +91,10 @@ public class UserController {
      * @param request request对象
      * @throws IOException 文件上传的异常
      */
-    @RequestMapping("/modifyMessage/{id}")
-    public void modifyMessage(User user,HttpServletResponse response,HttpServletRequest request) throws IOException {
-        userService.modtfyMessage(user);
+    @RequestMapping("/modifyMessage/{uid}")
+    public void modifyMessage(@PathVariable("uid") int uid,@RequestBody User user, HttpServletResponse response, HttpServletRequest request) throws IOException {
+        user.setUid(uid);
+        userService.modifyMessage(user);
         response.sendRedirect(request.getContextPath()+"/user/findAll/"+user.getId());
     }
 }

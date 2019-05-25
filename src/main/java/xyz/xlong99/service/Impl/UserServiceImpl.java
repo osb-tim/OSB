@@ -16,24 +16,22 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User findUser(int id) {
-        System.out.println("findUser()。。。。");
-        return userDao.findAll(id);
+    public User findUser(int uid) {
+        return userDao.findAll(uid);
     }
 
     @Override
     public void modifyUser(User user) {
         userDao.modifyUser(user);
-        System.out.println("modifyUser()。。。。");
     }
 
     @Override
-    public void modifyPhoto(String photo, int id) {
-        userDao.modifyPhoto(photo,id);
+    public void modifyPhoto(String photo, int uid) {
+        userDao.modifyPhoto(photo,uid);
     }
 
     @Override
-    public void modtfyMessage(User user) {
+    public void modifyMessage(User user) {
         userDao.modifyMessage(user);
     }
 }

@@ -9,9 +9,10 @@ import xyz.xlong99.domain.User;
 public interface UserService {
     /**
      * 通过用户ID查询信息
+     * @param uid 用户id
      * @return User
      */
-    User findUser(int id);
+    User findUser(int uid);
 
     /**
      * 修改用户信息（包括头像）
@@ -22,13 +23,13 @@ public interface UserService {
     /**
      *修改用户头像
      * @param photo 头像名字
-     * @param id 用户id
+     * @param uid 用户id
      */
-    void modifyPhoto(String photo,int id);
+    void modifyPhoto(String photo,int uid);
 
     /**
      * 修改用户信息
      * @param user 用户信息
      */
-    void modtfyMessage(User user);
+    void modifyMessage(User user);
 }
