@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.xlong99.domain.Classify;
 import xyz.xlong99.domain.Tag;
 import xyz.xlong99.domain.Wiki;
+import xyz.xlong99.service.UserService;
 import xyz.xlong99.service.WikiService;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class WikiController {
     @Autowired
     private WikiService wikiService;
 
+    @Autowired
+    private UserService userService;
     /**
      * 直接通过分类id查询文章
      * @param wiki 接受请求id
@@ -27,7 +30,9 @@ public class WikiController {
     @RequestMapping("/classifyId")
     @ResponseBody
     public List<Wiki> findWikiByClassifyId(@RequestBody Wiki wiki){
-        return wikiService.findWikiByClassifyId(wiki.getClassifyId());
+        List<Wiki> list = wikiService.findWikiByClassifyId(wiki.getClassifyId());
+        list = test(list);
+        return list;
     }
 
     /**
@@ -38,7 +43,9 @@ public class WikiController {
     @RequestMapping("/tagId")
     @ResponseBody
     public List<Wiki> fingWikiByTagId(@RequestBody Wiki wiki){
-        return wikiService.findWikiByTagId(wiki.getTag());
+        List<Wiki> list = wikiService.findWikiByTagId(wiki.getTag());
+        list = test(list);
+        return list;
     }
 
     /**
@@ -49,7 +56,9 @@ public class WikiController {
     @RequestMapping("/tagName")
     @ResponseBody
     public List<Wiki> findWikiByTagName(@RequestBody Tag tag){
-        return wikiService.findWikiByTagId(wikiService.getTagId(tag.getTagname()));
+        List<Wiki> list = wikiService.findWikiByTagId(wikiService.getTagId(tag.getTagname()));
+        list = test(list);
+        return list;
     }
 
     /**
@@ -60,7 +69,19 @@ public class WikiController {
     @RequestMapping("/classifyName")
     @ResponseBody
     public List<Wiki> findWikiByClassifyName(@RequestBody Classify classify){
-        return wikiService.findWikiByClassifyId(wikiService.getClassifyId(classify.getClassifyName()));
+        List<Wiki> list =  wikiService.findWikiByClassifyId(wikiService.getClassifyId(classify.getClassifyName()));
+        list = test(list);
+        return list;
     }
 
+    /**
+     * 给user属性赋值
+     * @param list 文章的集合
+     */
+    public List<Wiki> test(List<Wiki> list){
+        for(Wiki wiki : list){
+            wiki.setUser(userService.findUser(wiki.getAuthorId()));
+        }
+        return list;
+    }
 }

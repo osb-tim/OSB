@@ -1,7 +1,9 @@
 package xyz.xlong99.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import xyz.xlong99.dao.UserDao;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -57,6 +59,10 @@ public class Wiki implements Serializable {
      * 文章是否公开
      */
     private boolean ifPublic;
+    /**
+     * 用户基本信息
+     */
+    private User user;
 
     public int getWid() {
         return wid;
@@ -146,6 +152,14 @@ public class Wiki implements Serializable {
         this.ifPublic = ifPublic;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Wiki{" +
@@ -157,9 +171,10 @@ public class Wiki implements Serializable {
                 ", discription='" + discription + '\'' +
                 ", body='" + body + '\'' +
                 ", likeCount=" + likeCount +
-                ", createDate=" + createTime +
-                ", updateDate=" + updateTime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 ", ifPublic=" + ifPublic +
+                ", user=" + user +
                 '}';
     }
 }
