@@ -13,11 +13,11 @@ import xyz.xlong99.domain.User;
 public interface UserDao {
     /**
      * 查询指定用户所有信息
-     * @param id 用户id,查询依据
+     * @param uid 用户id,查询依据
      * @return User 用户所有信息
      */
-    @Select("select * from user where id = #{id}")
-    User findAll(int id);
+    @Select("select * from personaldata where uid = #{uid}")
+    User findAll(int uid);
 
     /**
      * 根据表单信息修改用户信息

@@ -4,7 +4,6 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +36,6 @@ public class UserController {
      */
     @RequestMapping("/findAll/{uid}")
     public @ResponseBody User findAll(@PathVariable("uid") int uid){
-        System.out.println("=========");
         User user = userService.findUser(uid);
         return user;
     }
@@ -95,7 +93,7 @@ public class UserController {
     public void modifyMessage(@PathVariable("uid") int uid,@RequestBody User user, HttpServletResponse response, HttpServletRequest request) throws IOException {
         user.setUid(uid);
         userService.modifyMessage(user);
-        response.sendRedirect(request.getContextPath()+"/user/findAll/"+user.getId());
+        response.sendRedirect(request.getContextPath()+"/user/findAll/"+user.getUid());
     }
 }
 
