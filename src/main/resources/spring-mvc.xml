@@ -30,5 +30,23 @@
         <property name="maxUploadSize" value="10485760"/>
     </bean>
     <!--    开启springmvc注解支持-->
-    <mvc:annotation-driven/>
+<!--    <mvc:annotation-driven/>-->
+
+<!--    配置时间类型转换为指定格式的JSON字符串-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd hh:mm:ss" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>

@@ -101,6 +101,7 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+
     </bean>
 
     <!-- 前台的事务管理 -->
