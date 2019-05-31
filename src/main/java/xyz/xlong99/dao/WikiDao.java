@@ -1,11 +1,12 @@
 package xyz.xlong99.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import xyz.xlong99.domain.Wiki;
 
 import java.util.List;
-
+@Mapper
 @Repository
 public interface WikiDao {
 

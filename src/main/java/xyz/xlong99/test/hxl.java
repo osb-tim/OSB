@@ -1,7 +1,7 @@
 package xyz.xlong99.test;
 
-public class hxl {
-    public static void main(String[] args) {
+public class hxl extends BaseTest{
+    public  void main() {
         System.out.println();
     }
 }

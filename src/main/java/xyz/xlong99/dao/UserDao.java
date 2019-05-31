@@ -1,4 +1,5 @@
 package xyz.xlong99.dao;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -9,6 +10,7 @@ import xyz.xlong99.domain.User;
  * @author 胡学良
  * @date 2019-05-24 20:30
  */
+@Mapper
 @Repository
 public interface UserDao {
     /**
