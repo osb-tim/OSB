@@ -5,5 +5,5 @@
 
 package xyz.xlong99.test;
 
-public class gsl {
+public class gsl extends BaseTest {
 }
