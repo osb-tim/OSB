@@ -32,7 +32,7 @@ public interface LoginDao {
     @Update("update user set password = #{newpassword} where loginname = #{loginname}")
     void changePassword(@Param("loginname") String loginname,@Param("newpassword")String newpassword);
     /**
-     * 注册保存用户
+     * 注册和保存用户
      * @param loginname 用户名
      * @param password 密码
      */
