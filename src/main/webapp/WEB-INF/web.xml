@@ -47,10 +47,6 @@
     <!--    启动服务器创建该servlet-->
     <load-on-startup>1</load-on-startup>
   </servlet>
-    <servlet>
-        <servlet-name>Servlet</servlet-name>
-        <servlet-class>xyz.xlong99.controller.Servlet</servlet-class>
-    </servlet>
     <servlet-mapping>
     <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
