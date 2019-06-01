@@ -1,5 +1,6 @@
 package xyz.xlong99.test;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import xyz.xlong99.dao.LoginDao;
 import xyz.xlong99.dao.UserDao;
+import xyz.xlong99.utils.SendMessage;
 import xyz.xlong99.utils.md5;
 
 import javax.annotation.Resource;
@@ -20,11 +22,11 @@ import javax.annotation.Resource;
 
 public class xlongtest extends BaseTest {
     @Resource
-    private   UserDao userDao;
+    private   LoginDao loginDao;
 
     @Test
     public  void test1() {
-        System.out.println(userDao.findAll(1));
-        System.out.println("123");
+
+        System.out.println(SendMessage.sendMessage("15536198818"));
     }
 }

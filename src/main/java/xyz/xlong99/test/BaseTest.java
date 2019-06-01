@@ -15,8 +15,5 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(locations={"classpath:applicationContext.xml","classpath:spring-mvc.xml"})
 public class BaseTest {
 
-    @Test
-    public void test(){
-        System.out.println("ceshi");
-    }
+
 }
