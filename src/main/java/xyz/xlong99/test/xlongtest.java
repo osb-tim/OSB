@@ -27,6 +27,6 @@ public class xlongtest extends BaseTest {
     @Test
     public  void test1() {
 
-        System.out.println(SendMessage.sendMessage("15536198818"));
+        System.out.println(SendMessage.sendMessage("1553619818"));
     }
 }
