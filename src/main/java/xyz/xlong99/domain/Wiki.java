@@ -1,10 +1,7 @@
 package xyz.xlong99.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import xyz.xlong99.dao.UserDao;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -28,7 +25,7 @@ public class Wiki implements Serializable {
     /**
      * 文章标签id
      */
-    private int tag;
+    private String tag;
     /**
      * 文章分类id
      */
@@ -36,7 +33,7 @@ public class Wiki implements Serializable {
     /**
      * 文章描述
      */
-    private String discription;
+    private String description;
     /**
      * 文章的markdown内容
      */
@@ -88,11 +85,11 @@ public class Wiki implements Serializable {
         this.topic = topic;
     }
 
-    public int getTag() {
+    public String getTag() {
         return tag;
     }
 
-    public void setTag(int tag) {
+    public void setTag(String tag) {
         this.tag = tag;
     }
 
@@ -105,11 +102,11 @@ public class Wiki implements Serializable {
     }
 
     public String getDiscription() {
-        return discription;
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDiscription(String description) {
+        this.description = description;
     }
 
     public String getBody() {
@@ -166,9 +163,9 @@ public class Wiki implements Serializable {
                 "wid=" + wid +
                 ", authorId=" + authorId +
                 ", topic='" + topic + '\'' +
-                ", tag=" + tag +
+                ", tag='" + tag + '\'' +
                 ", classifyId=" + classifyId +
-                ", discription='" + discription + '\'' +
+                ", description='" + description + '\'' +
                 ", body='" + body + '\'' +
                 ", likeCount=" + likeCount +
                 ", createTime=" + createTime +

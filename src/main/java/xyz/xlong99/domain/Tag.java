@@ -1,24 +1,24 @@
 package xyz.xlong99.domain;
 
 /**
- * @author 26901
+ * @author 胡学良
  * 存取标签信息
  */
 public class Tag {
     /**
      * 标签id
      */
-    private int tagid;
+    private String tagid;
     /**
      * 标签名字
      */
     private String tagname;
 
-    public int getTagid() {
+    public String  getTagid() {
         return tagid;
     }
 
-    public void setTagid(int tagid) {
+    public void setTagid(String tagid) {
         this.tagid = tagid;
     }
 

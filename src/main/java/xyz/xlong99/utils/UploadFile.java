@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * @author 胡学良
+ * 上传图片
+ */
 public class UploadFile {
     public static String uploadFiles(MultipartFile file) throws Exception {
         CommonsMultipartFile cFile = (CommonsMultipartFile) file;

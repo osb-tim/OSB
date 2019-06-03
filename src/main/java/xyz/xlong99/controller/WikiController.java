@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.xlong99.domain.Classify;
 import xyz.xlong99.domain.Tag;
 import xyz.xlong99.domain.Wiki;
-import xyz.xlong99.service.UserService;
 import xyz.xlong99.service.WikiService;
 
 import java.util.List;
 
 
+/**
+ * @author 胡学良
+ */
 @Controller
 @RequestMapping("/wiki")
 public class WikiController {
     @Autowired
     private WikiService wikiService;
 
-    @Autowired
-    private UserService userService;
     /**
      * 直接通过分类id查询文章
      * @param wiki 接受请求id
@@ -29,9 +29,11 @@ public class WikiController {
      */
     @RequestMapping("/classifyId")
     @ResponseBody
-    public List<Wiki> findWikiByClassifyId(@RequestBody Wiki wiki){
+    public List<Wiki> findWikiByClassifyId(Wiki wiki){
+        System.out.println(wiki);
         List<Wiki> list = wikiService.findWikiByClassifyId(wiki.getClassifyId());
-        list = test(list);
+        list = wikiService.assignUser(list);
+        list = wikiService.tagNameOfList(list);
         return list;
     }
 
@@ -42,9 +44,12 @@ public class WikiController {
      */
     @RequestMapping("/tagId")
     @ResponseBody
-    public List<Wiki> fingWikiByTagId(@RequestBody Wiki wiki){
+    public List<Wiki> fingWikiByTagId(Wiki wiki){
+        String string = wiki.getTag().replace("[","").replace("]","").replace(",","#");
+        wiki.setTag(string);
         List<Wiki> list = wikiService.findWikiByTagId(wiki.getTag());
-        list = test(list);
+        list = wikiService.assignUser(list);
+        list = wikiService.tagNameOfList(list);
         return list;
     }
 
@@ -55,9 +60,18 @@ public class WikiController {
      */
     @RequestMapping("/tagName")
     @ResponseBody
-    public List<Wiki> findWikiByTagName(@RequestBody Tag tag){
-        List<Wiki> list = wikiService.findWikiByTagId(wikiService.getTagId(tag.getTagname()));
-        list = test(list);
+    public List<Wiki> findWikiByTagName(Tag tag){
+        String string1 = tag.getTagname().replace("[","").replace("]","");
+        String[] names = string1.split(",");
+        StringBuilder ids = new StringBuilder();
+        for(int i = 0; i < names.length;i++){
+            String num = wikiService.getTagId(names[i]);
+            ids.append(num+"#");
+        }
+        String string2 = ids.deleteCharAt(ids.length()-1).toString();
+        List<Wiki> list = wikiService.findWikiByTagId(string2);
+        list = wikiService.assignUser(list);
+        list = wikiService.tagNameOfList(list);
         return list;
     }
 
@@ -68,20 +82,10 @@ public class WikiController {
      */
     @RequestMapping("/classifyName")
     @ResponseBody
-    public List<Wiki> findWikiByClassifyName(@RequestBody Classify classify){
+    public List<Wiki> findWikiByClassifyName(Classify classify){
         List<Wiki> list =  wikiService.findWikiByClassifyId(wikiService.getClassifyId(classify.getClassifyName()));
-        list = test(list);
-        return list;
-    }
-
-    /**
-     * 给user属性赋值
-     * @param list 文章的集合
-     */
-    public List<Wiki> test(List<Wiki> list){
-        for(Wiki wiki : list){
-            wiki.setUser(userService.findUser(wiki.getAuthorId()));
-        }
+        list = wikiService.assignUser(list);
+        list = wikiService.tagNameOfList(list);
         return list;
     }
 }
