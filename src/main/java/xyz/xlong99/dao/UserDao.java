@@ -23,7 +23,6 @@ public interface UserDao {
 
     /**
      * 根据表单信息修改用户信息
-     //     * @param id 用户ID
      * @param user 修改值
      * @return User 修改之后的用户信息
      */
@@ -36,7 +35,7 @@ public interface UserDao {
      * @param uid 用户ID
      */
     @Update("update personaldata set photo = #{photo} where uid = #{uid}")
-    void modifyPhoto(@Param("photo") String photo, @Param("id") int uid);
+    void modifyPhoto(@Param("photo") String photo, @Param("uid") int uid);
 
     /**
      * 修改用户基本信息
