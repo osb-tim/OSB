@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Mapper
 @Repository
-public interface WikiDao {
+public interface WikiDaoHxl {
     /**
      * 通过文章分类id查询文章
      * @param classifyId 文章分类id
