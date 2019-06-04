@@ -1,6 +1,5 @@
 package xyz.xlong99.service;
 
-import org.springframework.stereotype.Service;
 import xyz.xlong99.domain.Wiki;
 
 import java.util.List;
@@ -22,14 +21,14 @@ public interface WikiService {
      * @param tag 文章标签id
      * @return 文章集合
      */
-    List<Wiki> findWikiByTagId(int tag);
+    List<Wiki> findWikiByTagId(String tag);
 
     /**
      * 通过标签名字查询id
      * @param name 标签名字
      * @return 标签id
      */
-    int getTagId(String name);
+    String getTagId(String name);
 
     /**
      * 通过分类名字查询id
@@ -37,4 +36,25 @@ public interface WikiService {
      * @return 分类id
      */
     int getClassifyId(String name);
+
+    /**
+     * 通过标签id查询名字
+     * @param id 标签id
+     * @return 标签名字
+     */
+    String getTagName(String id);
+
+    /**
+     * 通过集合中的标签id查询名字
+     * @param list wiki集合
+     * @return wiki集合
+     */
+    List<Wiki> tagNameOfList(List<Wiki> list);
+
+    /**
+     * 为集合中的wiki的属性user赋值
+     * @param list wiki集合
+     * @return wiki集合
+     */
+    List<Wiki> assignUser(List<Wiki> list);
 }

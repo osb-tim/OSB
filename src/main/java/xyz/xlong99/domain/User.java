@@ -7,10 +7,6 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     /**
-     *自动递增
-     */
-    private int id;
-    /**
      * 用户id
      */
     private int uid;
@@ -39,13 +35,6 @@ public class User implements Serializable {
      */
     private String photo;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getUid() {
         return uid;
@@ -106,8 +95,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", uid=" + uid +
+                "uid=" + uid +
                 ", nickName='" + nickName + '\'' +
                 ", sex='" + sex + '\'' +
                 ", position='" + position + '\'' +

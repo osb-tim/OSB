@@ -1,7 +1,7 @@
 package xyz.xlong99.domain;
 
 /**
- * @author 26901
+ * @author 胡学良
  * 存取分类信息
  */
 public class Classify {
