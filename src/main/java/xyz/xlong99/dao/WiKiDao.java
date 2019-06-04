@@ -1,11 +1,11 @@
 package xyz.xlong99.dao;
 
 
-import xyz.xlong99.domain.QueryWiki;
-import xyz.xlong99.domain.WiKiEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
+import xyz.xlong99.domain.QueryWiki;
+import xyz.xlong99.domain.WiKiEntity;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -97,28 +97,32 @@ public class WiKiDao {
         //4执行查询
         List<WiKiEntity> List = session.createQuery(createQuery).getResultList();
         session.close();
-        if (List.get(0)!=null) {
-            if (List.get(0).getTagTemp()!=null){
-                List.get(0).setTag(List.get(0).getTagTemp().split("#"));
-            }
-            if (List.get(0).getImagesTemp()!=null){
-                List.get(0).setImages(List.get(0).getImagesTemp().split("#"));
-            }
-            if (List.get(0).getLikePersonTemp()!=null){
-                List.get(0).setLikePerson(List.get(0).getLikePersonTemp().split("#"));
-            }
-            if (queryWiki.getUid()!=null||List.get(0).getLikePersonTemp()!=null){
-                List.get(0).setLikePerson(List.get(0).getLikePersonTemp().split("#"));
-                for (String i:List.get(0).getLikePerson()){
-                    if (i.equals(queryWiki.getUid())){
-                        List.get(0).setIfAddLike(true);
+        if (List.get(0).isIfPublic()||List.get(0).getAuthorId().equals(queryWiki.getUid())) {
+            if (List.get(0) != null) {
+                if (List.get(0).getTagTemp() != null) {
+                    List.get(0).setTag(List.get(0).getTagTemp().split("#"));
+                }
+                if (List.get(0).getImagesTemp() != null) {
+                    List.get(0).setImages(List.get(0).getImagesTemp().split("#"));
+                }
+                if (List.get(0).getLikePersonTemp() != null) {
+                    List.get(0).setLikePerson(List.get(0).getLikePersonTemp().split("#"));
+                }
+                if (queryWiki.getUid() != null && List.get(0).getLikePersonTemp() != null) {
+                    List.get(0).setLikePerson(List.get(0).getLikePersonTemp().split("#"));
+                    for (String i : List.get(0).getLikePerson()) {
+                        if (i.equals(queryWiki.getUid())) {
+                            List.get(0).setIfAddLike(true);
+                        }
                     }
                 }
+                return List.get(0);
+            } else {
+                return "未查询到";
             }
-            return List.get(0);
         }
-        else{
-            return "未查询到";
+        else {
+            return "对方设置为私密";
         }
     }
 
